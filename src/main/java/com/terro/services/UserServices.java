@@ -56,4 +56,12 @@ public interface UserServices {
     @GET("/")
     public UserRandomResponse listUsersWithGender(@Query("results") Integer results, @Query("gender") String gender);
 
+    /**
+     * Return a random user specified since the parameter seed is implemented in that way.
+     *
+     * @param seed - Specified a user
+     */
+    @GET("/")
+    public UserRandomResponse userWithSeed (@Query("seed") String seed);
+
 }

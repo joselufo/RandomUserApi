@@ -27,11 +27,11 @@ public class Main {
         print(collectionResult);
 
         // Get one user with gender
-        UserRandomResponse resultGender = userServices.userWithGender(UserServices.MALE);
+        UserRandomResponse resultGender = userServices.userWithGender(Gender.MALE);
         print(resultGender);
 
         // Get one collection of users with gender
-        UserRandomResponse collectionResultGender = userServices.listUsersWithGender(20, UserServices.FEMALE);
+        UserRandomResponse collectionResultGender = userServices.listUsersWithGender(20, Gender.FEMALE);
         print(collectionResultGender);
 
         UserServicesAsync userServicesAsync = randomUser.userServicesAsync();
@@ -43,10 +43,10 @@ public class Main {
         userServicesAsync.listUserAsync(10, listener);
 
         // Get one user with gender asynchronous
-        userServicesAsync.userWithGenderAsync(UserServices.MALE, listener);
+        userServicesAsync.userWithGenderAsync(Gender.MALE, listener);
 
         // Get one collection of users with gender
-        userServicesAsync.listUsersWithGenderAsync(10, UserServices.FEMALE, listener);
+        userServicesAsync.listUsersWithGenderAsync(10, Gender.FEMALE, listener);
     }
 
 
