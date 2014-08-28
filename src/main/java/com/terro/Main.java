@@ -2,6 +2,7 @@ package com.terro;
 
 import com.terro.entities.UserRandomResponse;
 import com.terro.services.UserServices;
+import com.terro.services.UserServicesAsync;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -33,17 +34,19 @@ public class Main {
         UserRandomResponse collectionResultGender = userServices.listUsersWithGender(20, UserServices.FEMALE);
         print(collectionResultGender);
 
+        UserServicesAsync userServicesAsync = randomUser.userServicesAsync();
+
         // Get one user asynchronous
-        userServices.userAsynchronous(listener);
+        userServicesAsync.userAsync(listener);
 
         // Get one collections of users asynchronous
-        userServices.listUserAsynchronous(10, listener);
+        userServicesAsync.listUserAsync(10, listener);
 
         // Get one user with gender asynchronous
-        userServices.userWithGenderAsynchronous(UserServices.MALE, listener);
+        userServicesAsync.userWithGenderAsync(UserServices.MALE, listener);
 
         // Get one collection of users with gender
-        userServices.listUsersWithGenderAsynchronous(10, UserServices.FEMALE, listener);
+        userServicesAsync.listUsersWithGenderAsync(10, UserServices.FEMALE, listener);
     }
 
 
