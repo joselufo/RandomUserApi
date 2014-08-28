@@ -43,4 +43,12 @@ import retrofit.http.Query;
     @GET("/")
     public void listUsersWithGenderAsync(@Query("results") Integer results, @Query("gender") String gender, Callback<UserRandomResponse> callback);
 
+     /**
+      * Return a random user specified since the parameter seed is implemented in that way.
+      *
+      * @param seed - Specified a user
+      * @param callback - Callback
+      */
+     @GET("/")
+     public void userWithSeedAsync (@Query("seed") String seed, Callback<UserRandomResponse> callback);
 }
