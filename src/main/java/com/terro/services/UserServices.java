@@ -24,9 +24,6 @@ import retrofit.http.Query;
 
 public interface UserServices {
 
-    public static final String FEMALE = "female";
-    public static final String MALE = "male";
-
     /**
      * Return one random user.
      *
