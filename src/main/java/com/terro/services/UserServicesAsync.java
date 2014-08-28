@@ -5,7 +5,7 @@ import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Query;
 
-public interface UserServicesAsync {
+ public interface UserServicesAsync {
 
     /**
      * Returns a random user asynchronously.

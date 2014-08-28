@@ -19,27 +19,7 @@ public class UserServicesTest extends BaseTestCase {
 
     }
 
-    public void testUserAsynchronous() throws Exception {
-
-        getManager().userServicesAsync().userAsync(new Callback<UserRandomResponse>() {
-            @Override
-            public void success(UserRandomResponse userRandomResponse, Response response) {
-                assertThat(userRandomResponse).isNotNull();
-            }
-
-            @Override
-            public void failure(RetrofitError retrofitError) {
-
-            }
-        });
-
-    }
-
     public void testListUsers() throws Exception {
-
-    }
-
-    public void testListUserAsynchronous() throws Exception {
 
     }
 
@@ -47,15 +27,8 @@ public class UserServicesTest extends BaseTestCase {
 
     }
 
-    public void testUserWithGenderAsynchronous() throws Exception {
-
-    }
-
     public void testListUsersWithGender() throws Exception {
 
     }
 
-    public void testListUsersWithGenderAsynchronous() throws Exception {
-
-    }
 }
