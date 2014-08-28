@@ -17,7 +17,6 @@
 package com.terro.services;
 
 import com.terro.entities.UserRandomResponse;
-import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Query;
 
