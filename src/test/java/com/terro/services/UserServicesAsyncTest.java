@@ -17,7 +17,9 @@ import static org.fest.assertions.api.Assertions.assertThat;
 public class UserServicesAsyncTest extends BaseTestCase {
 
     private CountDownLatch lock = new CountDownLatch(1);
+    private CountDownLatch lockSeeds = new CountDownLatch(3);
     private UserRandomResponse responseUserRandom;
+    private UserRandomResponse responseUserRandomSeeds;
 
 
     public void testUserAsync() throws Exception {
@@ -102,9 +104,55 @@ public class UserServicesAsyncTest extends BaseTestCase {
         }
     }
 
+    public void testUserWithSeedAsync () throws Exception {
+        getManager().userServicesAsync().listUserAsync(3, new Callback<UserRandomResponse>() {
+            @Override
+            public void success(UserRandomResponse userRandomResponse, Response response) {
+                responseUserRandom = userRandomResponse;
+                lock.countDown();
+            }
+
+            @Override
+            public void failure(RetrofitError retrofitError) {
+
+            }
+        });
+
+        lockAwait();
+        assertThat(responseUserRandom).isNotNull();
+        assertThat(responseUserRandom.getResults().size()).isEqualTo(3);
+
+        for (Result result : responseUserRandom.getResults()) {
+            assertThat(result).isNotNull();
+            getManager().userServicesAsync().userWithSeedAsync(result.getSeed(), new Callback<UserRandomResponse>() {
+                @Override
+                public void success(UserRandomResponse userRandomResponse, Response response) {
+                    responseUserRandomSeeds = userRandomResponse;
+                    lockSeeds.countDown();
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+
+                }
+            });
+
+            lockAwaitSeeds();
+            assertThat(responseUserRandomSeeds.getResults().get(0).getSeed()).isEqualTo(result.getSeed());
+        }
+    }
+
     private void lockAwait () {
         try {
             lock.await(10000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void lockAwaitSeeds () {
+        try {
+            lockSeeds.await(10000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
