@@ -58,4 +58,17 @@ public class UserServicesTest extends BaseTestCase {
 
     }
 
+    public void testUserWithSeed() throws Exception {
+        UserRandomResponse response = getManager().userServices().listUsers(20);
+
+        for (Result result : response.getResults()) {
+            User user = result.getUser();
+            assertThat(user).isNotNull();
+
+            UserRandomResponse responseSeeds = getManager().userServices().userWithSeed(result.getSeed());
+
+            assertThat(responseSeeds.getResults().get(0).getSeed()).isEqualTo(result.getSeed());
+
+        }
+    }
 }
