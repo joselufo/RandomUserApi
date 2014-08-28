@@ -19,6 +19,7 @@ package com.terro;
 
 import com.terro.services.UserServices;
 import com.terro.services.UserServicesAsync;
+import com.terro.services.UserServicesObservable;
 import retrofit.RestAdapter;
 
 /**
@@ -101,4 +102,11 @@ public class RandomUser {
         return getRestAdapter().create(UserServicesAsync.class);
     }
 
+    /**
+     * Return the {@link com.terro.services.UserServicesObservable} instance.
+     *
+     */
+    public UserServicesObservable userServicesObservable () {
+        return getRestAdapter().create(UserServicesObservable.class);
+    }
 }
