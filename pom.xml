@@ -30,6 +30,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.netflix.rxjava</groupId>
+            <artifactId>rxjava-core</artifactId>
+            <version>0.13.4</version>
+        </dependency>
+
     </dependencies>
 
     <issueManagement>
