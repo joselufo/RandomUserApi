@@ -17,9 +17,9 @@
 
 package com.terro;
 
-import com.terro.services.UserServices;
-import com.terro.services.UserServicesAsync;
-import com.terro.services.UserServicesObservable;
+import com.terro.services.UserService;
+import com.terro.services.UserServiceAsync;
+import com.terro.services.UserServiceObservable;
 import retrofit.RestAdapter;
 
 /**
@@ -87,26 +87,26 @@ public class RandomUser {
     }
 
     /**
-     * Return the {@link UserServices} instance.
+     * Return the {@link com.terro.services.UserService} instance.
      *
      */
-    public UserServices userServices () {
-        return getRestAdapter().create(UserServices.class);
+    public UserService userServices () {
+        return getRestAdapter().create(UserService.class);
     }
 
     /**
-     * Return the {@link UserServicesAsync} instance.
+     * Return the {@link com.terro.services.UserServiceAsync} instance.
      *
      */
-    public UserServicesAsync userServicesAsync () {
-        return getRestAdapter().create(UserServicesAsync.class);
+    public UserServiceAsync userServicesAsync () {
+        return getRestAdapter().create(UserServiceAsync.class);
     }
 
     /**
-     * Return the {@link com.terro.services.UserServicesObservable} instance.
+     * Return the {@link com.terro.services.UserServiceObservable} instance.
      *
      */
-    public UserServicesObservable userServicesObservable () {
-        return getRestAdapter().create(UserServicesObservable.class);
+    public UserServiceObservable userServicesObservable () {
+        return getRestAdapter().create(UserServiceObservable.class);
     }
 }

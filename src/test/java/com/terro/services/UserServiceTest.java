@@ -9,7 +9,7 @@ import com.terro.entities.UserRandomResponse;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-public class UserServicesTest extends BaseTestCase {
+public class UserServiceTest extends BaseTestCase {
 
     public void testUser() throws Exception {
 

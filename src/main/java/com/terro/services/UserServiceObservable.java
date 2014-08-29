@@ -22,7 +22,7 @@ import retrofit.http.GET;
 import retrofit.http.Query;
 import rx.Observable;
 
-public interface UserServicesObservable {
+public interface UserServiceObservable {
 
     @GET("/")
     public Observable<UserRandomResponse> user();

@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-public class UserServicesAsyncTest extends BaseTestCase {
+public class UserServiceAsyncTest extends BaseTestCase {
 
     private CountDownLatch lock = new CountDownLatch(1);
     private CountDownLatch lockSeeds = new CountDownLatch(3);

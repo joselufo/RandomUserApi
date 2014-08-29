@@ -21,7 +21,7 @@ import retrofit.http.GET;
 import retrofit.http.Query;
 
 
-public interface UserServices {
+public interface UserService {
 
     /**
      * Return one random user.
