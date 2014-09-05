@@ -87,14 +87,14 @@ userServiceAsync.userAsync(new Callback<UserRandomResponse>() {
     userServiceObservable.user().subscribe(new Observer<UserRandomResponse>() {
         @Override
         public void onCompleted() {
-                  
+
         }
-    
+
         @Override
         public void onError(Throwable e) {
-    
+
         }
-    
+
         @Override
         public void onNext(UserRandomResponse userRandomResponse) {
             User user = userRandomResponse.getResults().get(0).getUser();
@@ -107,12 +107,23 @@ See test cases in `src/test/` for more examples
 Import RandomUserApi dependency
 -------------------------------
 
-To do
+You can find this library on Maven Central. All you have to do is add it on your gradle build:
+
+```xml
+dependencies {
+    compile 'com.github.terro:randomuserapi:1.0.0'
+}
+```
 
 Developed By
 ------------
 
 * Jose Luis Franconetti Olmedo - <joseluis.franconetti@gmail.com>
+
+Acknowledgments
+---------------
+
+* Aldo Borrero González – <aldo@aldoborrero.com> | The man who adapted the project to use Gradle!
 
 License
 -------
