@@ -35,7 +35,7 @@ import retrofit.RestAdapter;
 public class RandomUser {
 
     // END POINT
-    public static final String END_POINT = "http://api.randomuser.me/0.4";
+    public static final String END_POINT = "http://api.randomuser.me/0.4.1";
 
     private boolean isDebug;
     private RestAdapter restAdapter;

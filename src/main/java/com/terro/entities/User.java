@@ -26,7 +26,7 @@ public class User {
     private String password;
     private String salt;
     private String cell;
-    private String picture;
+    private Picture picture;
     private String md5;
     private String sha1;
     private String sha256;
@@ -34,6 +34,7 @@ public class User {
     private String dob;
     private String phone;
     private String SSN;
+    private String version;
 
     public User() {
     }
@@ -102,11 +103,11 @@ public class User {
         this.cell = cell;
     }
 
-    public String getPicture() {
+    public Picture getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(Picture picture) {
         this.picture = picture;
     }
 
@@ -164,6 +165,14 @@ public class User {
 
     public void setSSN(String SSN) {
         this.SSN = SSN;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     @Override

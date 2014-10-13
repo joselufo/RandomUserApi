@@ -20,15 +20,8 @@ public class Result {
 
     private User user;
     private String seed;
-    private String version;
 
     public Result() {
-    }
-
-    public Result(User user, String seed, String version) {
-        this.user = user;
-        this.seed = seed;
-        this.version = version;
     }
 
     public User getUser() {
@@ -47,20 +40,11 @@ public class Result {
         this.seed = seed;
     }
 
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
     @Override
     public String toString() {
         return "Result{" +
                 "user=" + user +
                 ", seed='" + seed + '\'' +
-                ", version='" + version + '\'' +
                 '}';
     }
 }
