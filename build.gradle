@@ -1,0 +1,131 @@
+['java', 'maven', 'signing'].each {
+  apply plugin: it
+}
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'org.hibernate.build.gradle:gradle-maven-publish-auth:2.0.1'
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+enum BuildType {
+  DEVELOPMENT,
+  CI,
+  RELEASE
+}
+
+BuildType build = BuildType.DEVELOPMENT
+
+def sonatypeUrl = ''
+def sonatypeConfig = ''
+def versionPostfix = ''
+
+switch (build) {
+  case BuildType.DEVELOPMENT:
+    sonatypeUrl = ''
+    versionPostfix = '-DEV'
+    break
+  case BuildType.CI:
+    sonatypeUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+    sonatypeConfig = 'sonatype-ci'
+    versionPostfix = '-SNAPSHOT'
+  break
+  case BuildType.RELEASE:
+    sonatypeUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+    sonatypeConfig = 'sonatype-production'
+}
+
+group = 'com.github.joselufo'
+def MAJOR = 1
+def MINOR = 0
+def PATCH = 0
+version = "${MAJOR}.${MINOR}.${PATCH}${versionPostfix}"
+
+dependencies {
+  compile 'com.squareup.retrofit:retrofit:1.6.1'
+  compile 'com.netflix.rxjava:rxjava-core:0.20.0'
+
+  testCompile 'junit:junit:4.11'
+  testCompile 'org.easytesting:fest-assert-core:2.0M10'
+}
+
+task sourcesJar(type: Jar) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives jar
+  archives sourcesJar
+}
+
+if (build == BuildType.RELEASE) {
+  signing {
+    sign configurations.archives
+  }
+} else {
+  task signArchives {
+    // do nothing
+  }
+}
+
+uploadArchives {
+  repositories {
+    if (build == BuildType.DEVELOPMENT) {
+      mavenLocal()
+    } else {
+      mavenDeployer {
+
+        if (build == BuildType.RELEASE) {
+          beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+        }
+
+        repository(url: sonatypeUrl) {
+            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+        }
+
+        pom.artifactId = 'randomuserapi'
+
+        pom.project {
+          name 'RandomUserApi'
+          packaging 'jar'
+          description 'A Java wrapper for RandomUser Api.'
+          url 'https://github.com/joselufo/RandomUserApi'
+
+          scm {
+            url 'scm:git@github.com:joselufo/RandomUserApi.git'
+            connection 'scm:git:git://github.com/joselufo/RandomUserApi.git'
+            developerConnection 'scm:git@github.com:joselufo/RandomUserApi.git'
+          }
+
+          licenses {
+            license {
+              name 'The Apache Software License, Version 2.0'
+              url 'http://www.apache.org/license/LICENSE-2.0.txt'
+              distribution 'repo'
+            }
+          }
+
+          developers {
+            developer {
+              id 'TeRRo'
+              name 'Jose Luis Franconetti'
+              email 'joseluis.franconetti@gmail.com'
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.12'
+}

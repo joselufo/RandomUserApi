@@ -14,37 +14,10 @@
  * limitations under the License.
  *
  */
-package com.terro.entities;
+package com.terro;
 
-public class Result {
 
-    private User user;
-    private String seed;
-
-    public Result() {
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getSeed() {
-        return seed;
-    }
-
-    public void setSeed(String seed) {
-        this.seed = seed;
-    }
-
-    @Override
-    public String toString() {
-        return "Result{" +
-                "user=" + user +
-                ", seed='" + seed + '\'' +
-                '}';
-    }
+public class Gender {
+    public static final String FEMALE = "female";
+    public static final String MALE = "male";
 }

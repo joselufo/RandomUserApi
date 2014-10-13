@@ -17,7 +17,9 @@
 
 package com.terro;
 
-import com.terro.services.UserServices;
+import com.terro.services.UserService;
+import com.terro.services.UserServiceAsync;
+import com.terro.services.UserServiceObservable;
 import retrofit.RestAdapter;
 
 /**
@@ -33,7 +35,7 @@ import retrofit.RestAdapter;
 public class RandomUser {
 
     // END POINT
-    public static final String END_POINT = "http://api.randomuser.me/0.4";
+    public static final String END_POINT = "http://api.randomuser.me/0.4.1";
 
     private boolean isDebug;
     private RestAdapter restAdapter;
@@ -85,11 +87,26 @@ public class RandomUser {
     }
 
     /**
-     * Return the {@link UserServices} instance.
+     * Return the {@link com.terro.services.UserService} instance.
      *
      */
-    public UserServices userServices () {
-        return getRestAdapter().create(UserServices.class);
+    public UserService userServices () {
+        return getRestAdapter().create(UserService.class);
     }
 
+    /**
+     * Return the {@link com.terro.services.UserServiceAsync} instance.
+     *
+     */
+    public UserServiceAsync userServicesAsync () {
+        return getRestAdapter().create(UserServiceAsync.class);
+    }
+
+    /**
+     * Return the {@link com.terro.services.UserServiceObservable} instance.
+     *
+     */
+    public UserServiceObservable userServicesObservable () {
+        return getRestAdapter().create(UserServiceObservable.class);
+    }
 }

@@ -21,19 +21,7 @@ import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Query;
 
-
-public interface UserServices {
-
-    public static final String FEMALE = "female";
-    public static final String MALE = "male";
-
-    /**
-     * Return one random user.
-     *
-     * @return
-     */
-    @GET("/")
-    public UserRandomResponse user();
+ public interface UserServiceAsync {
 
     /**
      * Returns a random user asynchronously.
@@ -41,15 +29,7 @@ public interface UserServices {
      * @param callback
      */
     @GET("/")
-    public void userAsynchronous(Callback<UserRandomResponse> callback);
-
-    /**
-     * Returns a list of random users.
-     *
-     * @param results - Number of users
-     */
-    @GET("/")
-    public UserRandomResponse listUsers(@Query("results") Integer results);
+    public void userAsync(Callback<UserRandomResponse> callback);
 
     /**
      * Returns a list of random users asynchronously.
@@ -58,15 +38,7 @@ public interface UserServices {
      * @param callback - Callback
      */
     @GET("/")
-    public void listUserAsynchronous(@Query("results") Integer results, Callback<UserRandomResponse> callback);
-
-    /**
-     * Returns a random user with a specific gender.
-     *
-     * @param gender - Gender user to return (Male or Fermale)
-     */
-    @GET("/")
-    public UserRandomResponse userWithGender(@Query("gender") String gender);
+    public void listUserAsync(@Query("results") Integer results, Callback<UserRandomResponse> callback);
 
     /**
      * Returns a random user with a specific gender asynchronously.
@@ -75,16 +47,7 @@ public interface UserServices {
      * @param callback - Callback
      */
     @GET("/")
-    public void userWithGenderAsynchronous(@Query("gender") String gender, Callback<UserRandomResponse> callback);
-
-    /**
-     * Returns a list of random users with a specific gender.
-     *
-     * @param results - Number of users
-     * @param gender - Gender user to return (Male or Female)
-     */
-    @GET("/")
-    public UserRandomResponse listUsersWithGender(@Query("results") Integer results, @Query("gender") String gender);
+    public void userWithGenderAsync(@Query("gender") String gender, Callback<UserRandomResponse> callback);
 
     /**
      * Returns a list of random users with a specific gender asynchronously.
@@ -94,9 +57,14 @@ public interface UserServices {
      * @param callback - Callback
      */
     @GET("/")
-    public void listUsersWithGenderAsynchronous(@Query("results") Integer results, @Query("gender") String gender, Callback<UserRandomResponse> callback);
+    public void listUsersWithGenderAsync(@Query("results") Integer results, @Query("gender") String gender, Callback<UserRandomResponse> callback);
 
-
-
-
+     /**
+      * Return a random user specified since the parameter seed is implemented in that way.
+      *
+      * @param seed - Specified a user
+      * @param callback - Callback
+      */
+     @GET("/")
+     public void userWithSeedAsync (@Query("seed") String seed, Callback<UserRandomResponse> callback);
 }
